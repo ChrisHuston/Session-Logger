@@ -1,0 +1,31 @@
+<div>
+    <div class="form-inline" style="margin-bottom: 10px;">
+        <select ng-show="course.sections.length>1" style="padding: 0;"
+                ng-change="changeSection()" class="form-control"
+                ng-model="currentSection"
+                ng-options="s as s.section_name for s in admin.sections"></select>
+        <select class="form-control" style="margin-left:10px; padding: 0;"
+                ng-model="dataType"
+                ng-options="t as t.label for t in dataTypes"
+                ng-change="initGrid()"></select>
+        <button ng-if="false" class="btn btn-default" ng-click="exportGrid()">Export</button>
+        <div class="form-group" ng-show="dataType.field == 'present_'" style="margin-left: 15px;">
+            <label>Late = </label>
+            <div class="late-box"></div>
+        </div>
+        <div class="form-group" ng-show="dataType.field == 'present_'" style="margin-left: 10px;">
+            <label>Excused = </label>
+            <div class="excused-box"></div>
+        </div>
+        <div class="form-group" ng-show="dataType.field == 'present_'" style="margin-left: 10px;">
+            <label>Unexcused = </label>
+            <div class="unexcused-box"></div>
+        </div>
+        <div class="form-group" style="margin-left: 10px;">
+            <button class="btn btn-default" ng-click="exportGrid()">Export</button>
+        </div>
+    </div>
+</div>
+<div class="col-sm-12 col-md-12 col-lg-12">
+    <div ui-grid="summaryGridOptions" ui-grid-auto-resize ui-grid-grouping ui-grid-exporter ui-grid-pinning class="summaryGridStyle"></div>
+</div>

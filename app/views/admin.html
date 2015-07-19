@@ -1,0 +1,165 @@
+<div class="row">
+    <div class="col-sm-6 col-md-6 col-lg-6">
+        <button style="margin-bottom: 10px;" class="btn btn-primary btn-block" ng-click="getSections()">Get Sections</button>
+        <div style="margin-bottom: 10px;" ng-show="course.sections.length>1">
+            <input ng-repeat="s in course.sections" ng-change="changeSectionNumber(s)" class="form-control" type="number" ng-model="s.section" style="width: 60px; margin-bottom: 5px;">
+        </div>
+        <table class="table table-condensed table-striped">
+            <tr>
+                <td style="width:50px;">Sect</td>
+                <td>Room</td>
+            </tr>
+            <tr ng-repeat="s in course.sections">
+                <td>{{s.section}}</td>
+                <td><select class="form-control" ng-change="changeSectionRoom(s)" ng-model="s.room_id" ng-options="r.room_id as r.name for r in classrooms"></select></td>
+            </tr>
+        </table>
+        <table class="table table-condensed table-striped">
+            <tr>
+                <td colspan="2">Visible to Students</td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="checkbox text-left" style="margin-left: 10px;">
+                        <label for="showAttendanceCb">
+                            <input id="showAttendanceCb" type="checkbox" ng-change="changeStudentView()" ng-model="course.show_attendance"/> Attendance</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox text-left" style="margin-left: 10px;">
+                        <label for="showSeatingCb">
+                            <input id="showSeatingCb" type="checkbox" ng-change="changeStudentView()" ng-model="course.show_seating"/> Seating Charts</label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="checkbox text-left" style="margin-left: 10px;">
+                        <label for="showColdCallsCb">
+                            <input id="showColdCallsCb" type="checkbox" ng-change="changeStudentView()" ng-model="course.show_cold_calls"/> Cold Calls</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox text-left" style="margin-left: 10px;">
+                        <label for="showEnableSeatingCb">
+                            <input id="showEnableSeatingCb" type="checkbox" ng-change="changeStudentView()" ng-model="course.enable_seating"/> Choose Seat</label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="checkbox text-left" style="margin-left: 10px;">
+                        <label for="showParticipationCb">
+                            <input id="showParticipationCb" type="checkbox" ng-change="changeStudentView()" ng-model="course.show_participation"/> Participation</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox text-left" style="margin-left: 10px;">
+                        <label for="showQuizCb">
+                            <input id="showQuizCb" type="checkbox" ng-change="changeStudentView()" ng-model="course.show_quiz"/> Quizzes</label>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <table class="table table-condensed table-striped">
+            <tr>
+                <td colspan="2">Visible Input Icons</td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="checkbox text-left" style="margin-left: 10px;">
+                        <label for="displayPresentCb">
+                        <input id="displayPresentCb" type="checkbox" ng-change="changeSettings()" ng-model="course.settings.show_present"/> Present</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox text-left" style="margin-left: 10px;">
+                        <label for="displayFlagCb">
+                            <input id="displayFlagCb" type="checkbox" ng-change="changeSettings()" ng-model="course.settings.show_flag"/> Flag</label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="checkbox text-left" style="margin-left: 10px;">
+                        <label for="displayLateCb">
+                            <input id="displayLateCb" type="checkbox" ng-change="changeSettings()" ng-model="course.settings.show_late"/> Late</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox text-left" style="margin-left: 10px;">
+                        <label for="displayNotesCb">
+                            <input id="displayNotesCb" type="checkbox" ng-change="changeSettings()" ng-model="course.settings.show_notes"/> Notes</label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="checkbox text-left" style="margin-left: 10px;">
+                        <label for="displayExcusedCb">
+                            <input id="displayExcusedCb" type="checkbox" ng-change="changeSettings()" ng-model="course.settings.show_excused"/> Excused</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox text-left" style="margin-left: 10px;">
+                        <label for="displayParticipationCb">
+                            <input id="displayParticipationCb" type="checkbox" ng-change="changeSettings()" ng-model="course.settings.show_participation"/> Participation</label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="checkbox text-left" style="margin-left: 10px;">
+                        <label for="displayUnexcusedCb">
+                            <input id="displayUnexcusedCb" type="checkbox" ng-change="changeSettings()" ng-model="course.settings.show_unexcused"/> Unexcused</label>
+                    </div>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="checkbox text-left" style="margin-left: 10px;">
+                        <label for="displayCounterCb">
+                            <input id="displayCounterCb" type="checkbox" ng-change="changeSettings()" ng-model="course.settings.show_counter"/> Counter</label>
+                    </div>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="checkbox text-left" style="margin-left: 10px;">
+                        <label for="displayColdcallCb">
+                            <input id="displayColdcallCb" type="checkbox" ng-change="changeSettings()" ng-model="course.settings.show_coldcall"/> Cold Call</label>
+                    </div>
+                </td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-sm-6 col-md-6 col-lg-6">
+        <div  class="form-group">
+            <select ng-show="course.sections.length>1" style="margin-bottom: 10px;" class="form-control" ng-model="currentSection" ng-options="s as s.section_name for s in course.sections"></select>
+            <input type="date" ng-blur="addSession()" on-enter="addSession()" placeholder="yyyy-MM-dd" class="form-control" ng-model="dt"/>
+        </div>
+
+        <table class="table table-condensed table-striped">
+            <tr>
+                <td style="width:50px;"></td>
+                <td>Sect</td>
+                <td>Session Date</td>
+            </tr>
+            <tr ng-repeat="session in course.sessions track by $id(session)">
+                <td><i class="fa fa-trash-o k-cursor" ng-click="deleteSession(session)"></i></td>
+                <td>{{session.section}}</td>
+                <td>
+                    <input type="date" placeholder="yyyy-MM-dd" class="form-control" ng-blur="editSessionDate(session)" ng-model="session.sessionDate"/>
+                    <div style="margin-top: 5px; text-align: left;" ng-show="course.show_quiz">
+                        <input type="number" tooltip="K-Blocks Unit ID" style="width:80px;display: inline-block;" class="form-control text-right" ng-blur="editSessionUnit(session)" ng-model="session.module_id">
+                        <input type="time" tooltip="Open time for attendance proxy" style="width:130px;display: inline-block;" class="form-control" ng-blur="editSessionOpen(session)" ng-model="session.open_time">
+                        <input type="time" tooltip="Close time for attendance proxy" style="width:130px;display: inline-block;" class="form-control" ng-blur="editSessionClose(session)" ng-model="session.close_time">
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

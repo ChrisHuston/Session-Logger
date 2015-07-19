@@ -1,0 +1,14 @@
+<div class="grid-student">
+    <div ng-repeat="r in course.grid" class="class-row clearfix">
+        <div ng-repeat="c in r">
+            <div class="grid-seat" ng-class="{myseat:c.student.net_id==user.net_id}" style="margin-left:{{c.margin}}px;">
+                <button ng-hide="c.student || user.is_seated || !course.enable_seating" class="btn btn-default no-print" ng-click="setStudentPosition(c)">{{(c.row+1)}}-{{(c.column+1)}}</button>
+                <div ng-if="c.student" style="position: relative">
+                    <div ng-show="course.enable_seating && c.student.net_id===user.net_id" class="remove-student no-print" ng-click="removeStudent(c)"><i class="fa fa-times"></i></div>
+                    <img ng-src="{{c.student.photo}}">
+                    <p>{{c.student.nickname}} {{c.student.last_name}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

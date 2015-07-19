@@ -1,0 +1,14 @@
+body.mce-content-body {
+    font-size: 16px;
+}
+
+body p {
+    line-height: 22px;
+    margin:0 0 10px;
+    display:block;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+}
+

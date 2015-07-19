@@ -1,0 +1,39 @@
+<div style="position: absolute; left: 10px;">
+    <div class="grid-left no-print">
+        <div class="form">
+            <select ng-show="course.sections.length>1" style="margin-bottom: 10px;"
+                    ng-change="changeSection()" class="form-control"
+                    ng-model="currentSection"
+                    ng-options="s as s.section_name for s in course.sections"></select>
+            <label for="showLastCb"><input id="showLastCb" type="checkbox" ng-model="user.showLast"> Show Last</label>
+            <label for="showNicknamesCb"><input id="showNicknamesCb" type="checkbox" ng-model="user.showNicknames"> Show Nicknames</label>
+        </div>
+        <div class="list-group">
+            <a href="" class="list-group-item k-cursor" ng-class="{active:(selectedStudent.net_id==student.net_id)}" ng-repeat="student in course.students | filter:filterStudents" ng-click="selectStudent(student)" style="text-align: center;">
+                <img class="grid-list-img" ng-src="{{student.photo}}">
+                <p><span ng-hide="user.showNicknames">{{student.first_name}}</span><span ng-show="user.showNicknames"> {{student.nickname}} </span><span ng-show="user.showLast" class="last-name"> {{student.last_name}}</span></p>
+            </a>
+        </div>
+    </div>
+    <div class="grid-main">
+        <div ng-repeat="r in course.grid" class="class-row clearfix">
+            <div ng-repeat="c in r">
+                <div class="grid-seat" style="margin-left:{{c.margin}}px;">
+                    <button ng-hide="c.student && c.student.section_id==currentSection.section_id" class="btn btn-default no-print" ng-click="setStudentPosition(c)">{{(c.row+1)}}-{{(c.column+1)}}</button>
+                    <div ng-if="c.student && c.student.section_id==currentSection.section_id" style="position: relative">
+                        <div class="remove-student no-print" ng-click="removeStudent(c)"><i class="fa fa-times"></i></div>
+                        <img ng-src="{{c.student.photo}}">
+                        <p><span ng-hide="user.showNicknames">{{c.student.first_name}}</span><span ng-show="user.showNicknames"> {{c.student.nickname}} </span><span ng-show="user.showLast" class="last-name"> {{c.student.last_name}}</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="well well-sm">
+            <h3 class="text-center">FRONT</h3>
+        </div>
+    </div>
+
+</div>
+
+
+

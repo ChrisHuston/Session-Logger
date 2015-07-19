@@ -1,0 +1,58 @@
+<div style="position: absolute; left: 10px;">
+    <div style="position: absolute; left: 10px; width:180px;" class="no-print">
+        <div class="form">
+            <select ng-show="course.sections.length>1" style="margin-bottom: 10px;" ng-change="changeSection()" class="form-control" ng-model="currentSection" ng-options="s as s.section_name for s in course.sections"></select>
+            <label for="showLastCb"><input id="showLastCb" type="checkbox" ng-model="user.showLast"> Show Last</label>
+            <label for="showNicknamesCb"><input id="showNicknamesCb" type="checkbox" ng-model="user.showNicknames"> Show Nicknames</label>
+            <label for="useAlphabeticCb"><input id="useAlphabeticCb" type="checkbox" ng-model="currentSection.alphabetic" ng-change="toggleAlphabetic()" ng-false-value="'0'" ng-true-value="'1'"> Alphabetic</label>
+        </div>
+
+        <input type="date" ng-blur="addSession()" on-enter="addSession()" placeholder="yyyy-MM-dd" class="form-control" ng-model="dt"/>
+        <div class="list-group" style="margin-top: 10px;">
+            <a href="" class="list-group-item k-cursor" ng-class="{active:(selectedSession.session_id==s.session_id)}" ng-repeat="s in course.sessions | filter:{section_id:currentSection.section_id}" ng-click="getSessionData(s)" style="text-align: center;">
+                {{s.session_date}}
+            </a>
+        </div>
+    </div>
+    <div class="grid-main">
+        <div ng-repeat="r in course.grid" class="class-row clearfix">
+            <div ng-repeat="c in r">
+                <div class="class-seat" style="margin-left:{{c.margin}}px;" >
+                    <div ng-if="c.student && c.student.section_id==currentSection.section_id" style="position: relative">
+                        <div style="position: relative" class="photo-box">
+                            <input ng-show="course.settings.show_present" type="checkbox" tooltip="Present" tooltip-placement="left" class="present-cb" ng-model="c.student.present" ng-change="addPresent(c.student)">
+                            <i ng-show="course.settings.show_late" class="fa fa-clock-o clock-cb k-cursor" tooltip="Late" tooltip-placement="left" ng-class="{late:c.student.late}" ng-click="toggleLate(c.student)"></i>
+                            <i ng-show="course.settings.show_excused" class="fa fa-bolt excused-cb k-cursor" tooltip="Excused" tooltip-placement="left" ng-class="{excused:c.student.excused}" ng-click="toggleExcused(c.student)"></i>
+                            <i ng-show="course.settings.show_unexcused" class="fa fa-frown-o unexcused-cb k-cursor" tooltip="Unexcused" tooltip-placement="left" ng-class="{unexcused:c.student.unexcused}" ng-click="toggleUnexcused(c.student)"></i>
+                            <i ng-show="course.settings.show_counter" class="fa fa-comment-o comments-cb k-cursor" tooltip="{{c.student.comments}}" ng-click="incrementComments(c.student, $event)" ng-swipe-left="decrementComments(c.student)"></i>
+                            <i ng-show="course.settings.show_flag" class="fa fa-flag flag-cb" ng-class="{flagged:c.student.flag}" ng-click="flagStudent(c.student)"></i>
+                            <i ng-show="course.settings.show_notes" class="fa fa-pencil-square notes-cb" ng-class="{noted:c.student.notes}" ng-click="showNotesModal(c.student)"></i>
+                            <img ng-src="{{c.student.photo}}">
+                        </div>
+
+                    <div class="form-inline" style="margin-top: 5px;">
+                        <input ng-show="course.settings.show_coldcall" tooltip="Cold Call" type="checkbox" ng-change="addColdCall(c.student)" ng-model="c.student.cold_call"
+                               class="log-box">
+                        <input ng-show="course.settings.show_participation" tooltip="Participation" type="text" ng-blur="addParticipation(c.student)" ng-model="c.student.participation"
+                               class="log-box" size="3" maxlength="3" step="0.1">
+                    </div>
+                    <p><span ng-hide="user.showNicknames">{{c.student.first_name}}</span><span ng-show="user.showNicknames"> {{c.student.nickname}} </span><span ng-show="user.showLast"> {{c.student.last_name}}</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/ng-template" id="notesModal.html">
+    <div class="modal-header">
+        <h4>{{student.first_name}} {{student.last_name}}</h4>
+    </div>
+    <div class="modal-body">
+        <textarea ng-model="student.notes" class="form-control" rows="3"></textarea>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="submitNotes()">Submit</button>
+        <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    </div>
+</script>

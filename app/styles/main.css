@@ -1,0 +1,314 @@
+body { padding-top: 60px; }
+
+td {
+    vertical-align:top;
+    border: 1px solid #DDDDDD;
+
+    text-align: center;
+}
+
+.k-logo {
+    max-height: 40px;
+    margin-right: 15px;
+    margin-top: 5px;
+    margin-bottom: 0;
+    padding: 0;
+}
+
+.k-cursor {
+    cursor: pointer;
+}
+
+.remove-student {
+    width: 25px;
+    position: absolute;
+    text-align: center;
+    top:0;
+    right:1px;
+    cursor: pointer;
+    background-color: rgba(150,150,150,.3);
+    border-radius: 3px;
+    z-index:100;
+}
+
+.remove-student:hover {
+    background-color: rgba(120,120,120,.8);
+}
+
+.grid-cell {
+    width:100px;
+    min-height: 60px;
+}
+
+.present-cb {
+    position: absolute;
+    left: 1px;
+    top: 0;
+    margin:0;
+}
+
+.present-cb[type=checkbox] {
+    margin:0;
+}
+
+.clock-cb {
+    position: absolute;
+    color:#AAAAAA;
+    left: 1px;
+    top:15px;
+    margin:0;
+}
+
+.late {
+    color:orange;
+}
+
+.unexcused-cb {
+    position: absolute;
+    color:#AAAAAA;
+    left: 1px;
+    top:49px;
+    margin:0;
+}
+
+.unexcused {
+    color:red;
+}
+
+.unexcused-box {
+    width:30px;
+    height: 20px;
+    display: inline-block;
+    background-color: palevioletred;
+}
+
+.isunexcused {
+    background-color: palevioletred !important;
+}
+
+.excused-cb {
+    position: absolute;
+    color:#AAAAAA;
+    left: 1px;
+    top:32px;
+    margin:0;
+}
+
+.excused {
+    color:lawngreen;
+}
+
+.excused-box {
+    width:30px;
+    height: 20px;
+    display: inline-block;
+    background-color: lawngreen;
+}
+
+.isexcused {
+    background-color: lawngreen !important;
+}
+
+.islate {
+    background-color: orange !important;
+}
+
+.late-box {
+    width:30px;
+    height: 20px;
+    display: inline-block;
+    background-color: orange;
+}
+
+.comments-cb {
+    position: absolute;
+    color:#AAAAAA;
+    left: 1px;
+    bottom:1px;
+}
+
+.flag-cb {
+    position: absolute;
+    right: 1px;
+    color:#AAAAAA;
+    cursor:pointer;
+}
+
+.flagged {
+    color: red;
+}
+
+.notes-cb {
+    position: absolute;
+    right: 1px;
+    bottom:1px;
+    color:#AAAAAA;
+    cursor:pointer;
+}
+
+.noted {
+    color: #ffff00;
+}
+
+.summaryGridStyle {
+    height: 600px;
+    width: 100%;
+    margin-bottom: 10px;
+    margin-top: 0;
+}
+
+.class-row {
+    margin-bottom: 10px;
+}
+
+.class-seat {
+    border: 1px solid #DDDDDD;
+    text-align: center;
+    width:70px;
+    min-height: 142px;
+    float: left;
+}
+
+.class-seat img {
+    width:66px;
+}
+
+.grid-list-img {
+    max-width: 90px;
+}
+
+.class-seat p {
+    width:68px;
+    font-size: 12px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+
+}
+
+.log-box {
+    border: 1px solid #DDDDDD ;
+    text-align: right;
+    border-radius:3px;
+    width:30px;
+}
+
+.grid-left {
+    position: fixed;
+    width:180px;
+    left:10px;
+    top:60px;
+    bottom: 0;
+    padding-bottom: 30px;
+    overflow: auto;
+    z-index: 200;
+}
+
+.grid-main {
+    position: absolute;
+    left: 200px;
+    z-index: 100;
+}
+
+.grid-student {
+    position: absolute;
+    left: 10px;
+    z-index: 100;
+}
+
+.allUsersStyle {
+    border: 1px solid rgb(212,212,212);
+    height: 600px;
+    margin-bottom: 10px;
+    margin-top: 0;
+}
+
+.centeredCol {
+    text-align: center;
+}
+
+.grid-seat {
+    border: 1px solid #DDDDDD;
+    text-align: center;
+    width:70px;
+    min-height: 114px;
+    float: left;
+}
+
+.grid-seat img {
+    width:66px;
+}
+
+.grid-seat p {
+    width:68px;
+    font-size: 12px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.myseat {
+    border: 1px solid #2178dd;
+    color: #005bae;
+    font-weight: bold;
+    background-color: #fff98c;
+}
+
+.col1 {
+    width:240px;
+}
+
+.col2 {
+    width:360px;
+}
+
+.col3 {
+    width:480px;
+}
+
+.photo-box {
+    min-height: 81px;
+}
+
+
+@media print
+{
+    .no-print, .no-print *
+    {
+        display: none !important;
+    }
+    body {
+        padding: 0;
+        margin:0;
+    }
+    .grid-main {
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 100;
+        height:100%;
+        width:100%;
+    }
+
+    .grid-student {
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 100;
+        height:100%;
+        width:100%;
+    }
+    .grid-seat {
+        border: 1px solid #333333;
+        text-align: center;
+        width:70px;
+        min-height: 114px;
+        float: left;
+    }
+
+    .class-seat {
+        border: 1px solid #333333;
+        text-align: center;
+        width:70px;
+        min-height: 142px;
+        float: left;
+    }
+}

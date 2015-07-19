@@ -1,0 +1,10 @@
+<div class="row" id="content-grids">
+    <div class="form-inline" style="margin-bottom: 10px;">
+        <button class="btn btn-primary" ng-click="getStudents()">Get Students</button>
+        <label># Students = {{course.students.length}}</label>
+        <label style="margin-left: 10px;"><input type="checkbox" ng-model="include_observers"> Include Observers/Auditors</label>
+    </div>
+    <div class="col-sm-12 col-md-12 col-lg-12">
+        <div ui-grid="studentsGridOptions" ui-grid-auto-resize ui-grid-edit ui-grid-grouping ui-grid-exporter class="summaryGridStyle"></div>
+    </div>
+</div>
